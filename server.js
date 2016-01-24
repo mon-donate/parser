@@ -53,6 +53,15 @@ newTransactions = [];
 
 // webhook stuff
 app.post('/new_transaction', function(req, res){
+  accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaSI6Im9hdXRoY2xpZW50XzAwMDA5NFB2SU5ER3pUM2s2dHo4anAiLCJleHAiOjE0NTM4OTkxMTMsImlhdCI6MTQ1MzYzOTkxMywianRpIjoidG9rXzAwMDA5NFR4STRGMlZGT2R4TFpDVHAiLCJ1aSI6InVzZXJfMDAwMDk0Um82eVl6ekIwbVhDbzNyRiIsInYiOiIxIn0.XOdbfp4iWon8TbKPkCV-dyVP5Nf0GhdJAF7Kvvt5g0M',
+  accountId = 'acc_000094Ro6z7NvKW8FqtWSH';
+  baseURL = 'https://staging-api.getmondo.co.uk';
+  settings = {
+    'auth': {
+      'bearer': accessToken
+    }
+  };
+  
   newTransactions.push(JSON.stringify(transaction));
   console.log('new transaction recognised');
   var transaction = req.body.data;
