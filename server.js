@@ -46,7 +46,7 @@ newTransactions = [];
 app.post('/new_transaction', function(req, res){
   console.log('new transaction recognised');
   console.log(req.body);
-  newTransactions.push(String(req));
+  newTransactions.push(String(req.body));
   res.send(200);
 });
 
