@@ -26,16 +26,21 @@ var accessToken, accountId, clientId, baseURL, settings;
 
 
 
+
+app.set('port', (process.env.PORT || 3000));
+
+app.listen(app.get('port'), '0.0.0.0', function () {
+  console.log('Example app listening on port' + app.get('port'));
+});
+
 app.get('/', function (req, res) {
   res.send('Hello World!');
 });
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
-});
-
 // webhook stuff
-app.post('')
+app.get('app', function(req, res){
+  res.send('hey?');
+});
 
 
 function init(){
