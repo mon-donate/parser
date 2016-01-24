@@ -27,9 +27,9 @@ var accessToken, accountId, clientId, baseURL, settings;
 
 
 
-app.set('port', (process.env.PORT || 5000));
+app.set('port', (process.env.PORT || 80));
 
-app.listen(app.get('port'), function () {
+app.listen(app.get('port'), '0.0.0.0', function () {
   console.log('Example app listening on port' + app.get('port'));
 });
 
