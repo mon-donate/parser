@@ -59,6 +59,9 @@ app.post('/new_transaction', function(req, res){
   var name = transaction.description.replace(/['"]+/g, '');
 
   charities.forEach(function(charity){
+    console.log('PAIR');
+    console.log(charity.mondoDescription);
+    console.log(name);
     if(charity.mondoDescription === name){
       console.log(transactions);
       console.log(charity);
