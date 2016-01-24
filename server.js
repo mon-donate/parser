@@ -13,7 +13,7 @@ var charities = [
     "merchantId": "merch_000094S7XUBOwkTnV5P1RB",
     "info": "Since its founding in 2004, the Against Malaria Foundation has distributed over 5.7 million insecticide nets around the world. These nets provide effective and long lasting protection against malaria, a debilitating and life threatening disease, enabling people to live happier, healthier and more productive lives",
     "multiple": 1.77,
-    "funds": "malaria nets"
+    "funds": "insecticide treated malaria nets"
   },
   {
     "name": "War Child",
@@ -21,7 +21,7 @@ var charities = [
     "merchantId": "merch_000094U3dsVDQdMJ6cxK8v",
     "info": "WarChild helps and supports children in some of the most dangerous and conflict ridden areas in the world.  Since 1993, they’ve helped millions of children affected by conflict, providing everything from school uniforms to anti-malarial treatments, and working to uphold children’s rights: the right to an education, the right to live free from violence, and ultimately, the right to a childhood.  ",
     "multiple": 3,
-    "funds": "blankets to keep a afgani child warm in winter"
+    "funds": "blankets to keep a child from Khabul warm during Afghanistan's freezing winters"
   },
   {
     "name": "Schistosomiasis Control Initiative",
@@ -29,7 +29,7 @@ var charities = [
     "merchantId": "merch_000094U2y5ktlSKRUt5DV3",
     "info": "The Schistosomiasis Control Initiative helps and support the governments of African nations treat schistosomiasis, a severely neglected tropic disease caused by parasitic worms. Since its founding in 2002, SCI have delivered well over 100 million treatments, allowing people to eliminate the parasitic disease from their bodies, and live happier, healthier and more productive lives.",
     "multiple": 0.37,
-    "funds": "treatmeant courses for Bill Harzia diseas for 1 year"
+    "funds": "treatment courses to combat schistosomiasis for an entire year"
   }
 ];
 
@@ -88,8 +88,6 @@ app.post('/new_transaction', function(req, res){
     var itFunds = "Your donation allows " + charity.name + " to fund " + impact + " " + charity.funds; 
     var body = itFunds + ". " + charity.info; 
 
-    console.log(title);
-    console.log(body);
     request.post(baseURL + '/feed?account_id=' + accountId + '&type=basic', settings, feedItemParser).form({
       params: {
         title: title,
