@@ -84,7 +84,7 @@ app.post('/new_transaction', function(req, res){
   function addFeedItem(transaction, charity){
     var title = "Impact statement for " + charity.name;
 
-    var imapct = Math.ceil(Math.abs(transaction.amount) / charity.multiple);
+    var impact = Math.ceil(Math.abs(transaction.amount) / charity.multiple);
     var itFunds = "Your donation allows " + charity.name + " to fund " + impact + " " + charity.funds; 
     var body = itFunds + ". Here is some information about the charity: " + charity.info; 
 
