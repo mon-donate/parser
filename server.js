@@ -41,7 +41,7 @@ newTransactions = [];
 // webhook stuff
 app.post('/new_transaction', function(req, res){
   console.log('new transaction recognised');
-  console.log(req);
+  console.log(Object.keys(req));
   newTransactions.push(String(req));
   res.send(200);
 });
