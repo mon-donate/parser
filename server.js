@@ -61,12 +61,7 @@ app.post('/new_transaction', function(req, res){
 
 
   charities.forEach(function(charity){
-    console.log('PAIR');
-    console.log(charity.mondoDescription);
-    console.log(name);
     if(charity.mondoDescription === name){
-      console.log(name);
-      console.log(charity);
       addFeedItem(transaction, charity);
     }
   });
@@ -75,6 +70,8 @@ app.post('/new_transaction', function(req, res){
     var title = "Impact statement for " + charity.name;
     var body = charity.info; 
 
+    console.log(title);
+    cosnole.log(body);
     request.post(baseURL + '/feed?account_id=' + accountId + '&type=basic', settings, feedItemParser).form({
       params: {
         title: title,
@@ -84,6 +81,8 @@ app.post('/new_transaction', function(req, res){
     });
 
     function feedItemParser(e, r, b){
+      console.log('feed res');
+      console.log(e);
       console.log(b);
     }
   }
