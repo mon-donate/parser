@@ -65,7 +65,7 @@ app.post('/new_transaction', function(req, res){
     console.log(charity.mondoDescription);
     console.log(name);
     if(charity.mondoDescription === name){
-      console.log(transactions);
+      console.log(transaction);
       console.log(charity);
       addFeedItem(transaction, charity);
     }
