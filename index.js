@@ -1,5 +1,8 @@
-request = require('request');
-charities = {
+var request = require('request');
+var express = require('express');
+var app = express();
+
+var charities = {
   "AGAINST MALARIA FOUNDATION": {
     "merchantId": "merch_000094S7XUBOwkTnV5P1RB"
   },
@@ -21,6 +24,18 @@ module.exports = {
 
 var accessToken, accountId, clientId, baseURL, settings;
 
+
+
+app.get('/', function (req, res) {
+  res.send('Hello World!');
+});
+
+app.listen(3000, function () {
+  console.log('Example app listening on port 3000!');
+});
+
+// webhook stuff
+app.post('')
 
 
 function init(){
