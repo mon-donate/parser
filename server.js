@@ -16,15 +16,14 @@ var charities = {
 
 module.exports = {
   init: init,
+  registerWebhook: registerWebhook,
   whoami: whoami,
   data: {
     transactions: []
   }
 }
 
-var accessToken, accountId, clientId, baseURL, settings;
-
-
+var accessToken, accountId, clientId, baseURL, settings, newTransactions;
 
 
 app.set('port', (process.env.PORT || 3000));
@@ -37,14 +36,22 @@ app.get('/', function (req, res) {
   res.send('Hello World!');
 });
 
+newTransactions = [];
+
 // webhook stuff
-app.get('app', function(req, res){
-  res.send('hey?');
+app.post('/new_transaction', function(req, res){
+  console.log(req.body);
+  newTransactions.push(String(req.body));
+  res.send(200);
+});
+
+app.get('/transactions', function(req, res){
+  res.send(String(newTrasnactions))
 });
 
 
 function init(){
-  accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaSI6Im9hdXRoY2xpZW50XzAwMDA5NFB2SU5ER3pUM2s2dHo4anAiLCJleHAiOjE0NTM4NTcyMDIsImlhdCI6MTQ1MzU5ODAwMiwianRpIjoidG9rXzAwMDA5NFN3eDNXdmw1YkZtdjh5NkQiLCJ1aSI6InVzZXJfMDAwMDk0Um82eVl6ekIwbVhDbzNyRiIsInYiOiIxIn0.ekwUwdl30n2NB4fY2RTmF-Eeu9wpaz8caOQOtl8xAwg',
+  accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaSI6Im9hdXRoY2xpZW50XzAwMDA5NFB2SU5ER3pUM2s2dHo4anAiLCJleHAiOjE0NTM4OTkxMTMsImlhdCI6MTQ1MzYzOTkxMywianRpIjoidG9rXzAwMDA5NFR4STRGMlZGT2R4TFpDVHAiLCJ1aSI6InVzZXJfMDAwMDk0Um82eVl6ekIwbVhDbzNyRiIsInYiOiIxIn0.XOdbfp4iWon8TbKPkCV-dyVP5Nf0GhdJAF7Kvvt5g0M',
   clientId = 'oauthclient_000094S742udG4wwsJy2G9',
   clientSecret = 'g4YaRe5SR1P+iGKRrPboEQ27hGmPlH1sKb4dSp/AD+PnkDLR3IKTo+waE9dgr6R/bs7Dy38a6tWu5IiPTMea'
   accountId = 'acc_000094Ro6z7NvKW8FqtWSH';
@@ -58,9 +65,19 @@ function init(){
   module.exports.accessToken = accessToken;
   module.exports.accountId = accountId;
 
-  whoami();
-  getAccounts();
-  getTransactions();
+  registerWebhook();
+}
+
+function registerWebhook(){
+  request.post(baseURL + '/webhooks?account_id=' + accountId + '&url=https://agile-lowlands-61737.herokuapp.com/new_transaction', settings, p).form({
+    account_id: "acc_000094Ro6z7NvKW8FqtWSH",
+    url: "https://agile-lowlands-61737.herokuapp.com/new_transaction"
+  });
+
+  function p(e, r, b){
+    console.log('webhook:');
+    console.log(b);
+  }
 }
 
 function whoami(){
