@@ -19,7 +19,7 @@ var charities = [
     "name": "War Child",
     "mondoDescription": "WWW.WARCHILD.ORG.UK".replace(/['"]+/g, '').toLowerCase(),
     "merchantId": "merch_000094U3dsVDQdMJ6cxK8v",
-    "info": "WarChild helps and supports children in some of the most dangerous and conflict ridden areas in the world.  Since 1993, they’ve helped millions of children affected by conflict, providing everything from school uniforms to anti-malarial treatments, and working to uphold children’s rights: the right to an education, the right to live free from violence, and ultimately, the right to a childhood.  ",
+    "info": "War Child support children in some of the world's most conflict ridden areas.  Since 1993, they’ve helped millions of children affected by conflict, providing everything from school uniforms to anti-malarial treatments, and working to uphold children’s rights: the right to an education, the right to live free from violence, and ultimately, the right to a childhood.  ",
     "multiple": 3,
     "funds": "blankets to keep a child from Khabul warm during Afghanistan's freezing winters"
   },
@@ -27,7 +27,7 @@ var charities = [
     "name": "Schistosomiasis Control Initiative",
     "mondoDescription": "SHORT COURSES".replace(/['"]+/g, '').toLowerCase(),
     "merchantId": "merch_000094U2y5ktlSKRUt5DV3",
-    "info": "The Schistosomiasis Control Initiative helps and support the governments of African nations treat schistosomiasis, a severely neglected tropic disease caused by parasitic worms. Since its founding in 2002, SCI have delivered well over 100 million treatments, allowing people to eliminate the parasitic disease from their bodies, and live happier, healthier and more productive lives.",
+    "info": "The Schistosomiasis Control Initiative supports the governments of African nations treat schistosomiasis, a neglected tropic disease caused by parasitic worms. Since its founding, SCI have delivered over 100 million treatments, allowing people to eliminate the parasite, and live happier, healthier and more productive lives.",
     "multiple": 0.37,
     "funds": "treatment courses to combat schistosomiasis for an entire year"
   }
