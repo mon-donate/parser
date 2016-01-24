@@ -71,7 +71,7 @@ app.post('/new_transaction', function(req, res){
     var body = charity.info; 
 
     console.log(title);
-    cosnole.log(body);
+    console.log(body);
     request.post(baseURL + '/feed?account_id=' + accountId + '&type=basic', settings, feedItemParser).form({
       params: {
         title: title,
