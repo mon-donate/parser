@@ -40,7 +40,8 @@ newTransactions = [];
 
 // webhook stuff
 app.post('/new_transaction', function(req, res){
-  console.log(req.body);
+  console.log('new transaction recognised');
+  console.log(req);
   newTransactions.push(String(req.body));
   res.send(200);
 });
@@ -68,10 +69,14 @@ function init(){
   registerWebhook();
 }
 
+function listWebhooks(){
+  request.get(baseURL + '/webhooks?account_id=' + accountId, settings, function(e, p, b){ console.log(b); });
+}
+
 function registerWebhook(){
-  request.post(baseURL + '/webhooks?account_id=' + accountId + '&url=https://agile-lowlands-61737.herokuapp.com/new_transaction', settings, p).form({
+  request.post(baseURL + '/webhooks?account_id=' + accountId, settings, p).form({
     account_id: "acc_000094Ro6z7NvKW8FqtWSH",
-    url: "https://agile-lowlands-61737.herokuapp.com/new_transaction"
+    url: "http://requestb.in/1i0no4w1"
   });
 
   function p(e, r, b){
@@ -127,12 +132,7 @@ function addFeedItem(transaction){
   }
 }
 
-
-
-
-
-function parser(error, res, body){
-}
+function parser(error, res, body){}
 
 
 
