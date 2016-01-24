@@ -86,7 +86,7 @@ app.post('/new_transaction', function(req, res){
 
     var impact = Math.ceil(Math.abs(transaction.amount / 100) / charity.multiple);
     var itFunds = "Your donation allows " + charity.name + " to fund " + impact + " " + charity.funds; 
-    var body = itFunds + ". Here is some information about the charity: " + charity.info; 
+    var body = itFunds + ". " + charity.info; 
 
     console.log(title);
     console.log(body);
