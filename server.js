@@ -15,7 +15,7 @@ var charities = [
   },
   {
     "name": "War Child",
-    "mondoDescription": "WWW.WARCHILD.ORG.UK.replace(/['"]+/g, '').toLowerCase(),
+    "mondoDescription": "WWW.WARCHILD.ORG.UK".replace(/['"]+/g, '').toLowerCase(),
     "merchantId": "merch_000094U3dsVDQdMJ6cxK8v",
     "info": "WarChild helps and supports children in some of the most dangerous and conflict ridden areas in the world.  Since 1993, they’ve helped millions of children affected by conflict, providing everything from school uniforms to anti-malarial treatments, and working to uphold children’s rights: the right to an education, the right to live free from violence, and ultimately, the right to a childhood.  Your donation helps support their work, enabling them to effectively help children living in some of the world’s most fragile nations, and provide these children with the childhood they deserve."
   },
@@ -101,8 +101,6 @@ app.get('/transactions', function(req, res){
 
 function init(){
   accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaSI6Im9hdXRoY2xpZW50XzAwMDA5NFB2SU5ER3pUM2s2dHo4anAiLCJleHAiOjE0NTM4OTkxMTMsImlhdCI6MTQ1MzYzOTkxMywianRpIjoidG9rXzAwMDA5NFR4STRGMlZGT2R4TFpDVHAiLCJ1aSI6InVzZXJfMDAwMDk0Um82eVl6ekIwbVhDbzNyRiIsInYiOiIxIn0.XOdbfp4iWon8TbKPkCV-dyVP5Nf0GhdJAF7Kvvt5g0M',
-  clientId = 'oauthclient_000094S742udG4wwsJy2G9',
-  clientSecret = 'g4YaRe5SR1P+iGKRrPboEQ27hGmPlH1sKb4dSp/AD+PnkDLR3IKTo+waE9dgr6R/bs7Dy38a6tWu5IiPTMea'
   accountId = 'acc_000094Ro6z7NvKW8FqtWSH';
   baseURL = 'https://staging-api.getmondo.co.uk';
   settings = {
