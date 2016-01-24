@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/mondo-charity-metadata/parser#readme",
   "dependencies": {
-    "Mondojs": "git+https://github.com/lededje/Mondojs.git"
+    "Mondojs": "git+https://github.com/lededje/Mondojs.git",
+    "body-parser": "^1.14.2"
   }
 }
