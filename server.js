@@ -6,17 +6,23 @@ var bodyParser = require('body-parser');
 var app = express();
 app.use(bodyParser.json())
 
-var charities = {
-  "AGAINST MALARIA FOUNDATION": {
-    "merchantId": "merch_000094S7XUBOwkTnV5P1RB"
-  },
-  "WAR CHILD": {
-    "merchantId": "merch_WARCHILDISTHEBESTCHARITY"
-  },
-  "OXFAM": {
-    "merchantId": "merch_OXFAM"
-  }
-};
+var charities = [
+  [
+    "name": "Against Malaria Foundation",
+    "merchantId": "merch_000094S7XUBOwkTnV5P1RB",
+    "info": "Since its founding in 2004, the Against Malaria Foundation has distributed over 5.7 million insecticide treated nets to places in the world where malaria is most prevalent. These nets provide effective and long lasting protection to prevent someone contracting this debilitating and life threatening disease, enabling people to live happier, healthier and more productive lives. Since 2000 we have halved the number of deaths due to malaria worldwide and we have the ability to eliminate it in our lifetimes: by donating, you’ve just helped to do exactly that."
+  ],
+  [
+    "name": "War Child",
+    "merchantId": "merch_000094U3dsVDQdMJ6cxK8v",
+    "info": "WarChild helps and supports children in some of the most dangerous and conflict ridden areas in the world.  Since 1993, they’ve helped millions of children affected by conflict, providing everything from school uniforms to anti-malarial treatments, and working to uphold children’s rights: the right to an education, the right to live free from violence, and ultimately, the right to a childhood.  Your donation helps support their work, enabling them to effectively help children living in some of the world’s most fragile nations, and provide these children with the childhood they deserve."
+  ],
+  [
+    "name": "Schistosomiasis Control Initiative"
+    "merchantId": "merch_000094U2y5ktlSKRUt5DV3",
+    "info": "The Schistosomiasis Control Initiative helps and support the governments of African nations treat schistosomiasis, a severely neglected tropic disease caused by parasitic worms. Since its founding in 2002, SCI have delivered well over 100 million treatments, allowing people to eliminate the parasitic disease from their bodies, and live happier, healthier and more productive lives. Whilst more than 40 million people were treated for schistosomiasis last year alone, 200 million people weren’t- together, we can reach these people, and your donation has helped to do exactly that."
+  ]
+];
 
 module.exports = {
   init: init,
@@ -45,7 +51,34 @@ newTransactions = [];
 // webhook stuff
 app.post('/new_transaction', function(req, res){
   console.log('new transaction recognised');
-  console.log(req.body);
+  var transaction = req.body.data;
+  var merchant = transaction.merchant.id;
+
+  charities.forEach(function(charity){
+    if(charity.merchantId === merchant){
+      addFeedItem(transaction, charity);
+    }
+  });
+
+  function addFeedItem(transaction, charity){
+    var title = "Impact statement for " + charity.name;
+    var body = charity.info; 
+
+    request.post(baseURL + '/feed?account_id=' + accountId + '&type=basic', settings, feedItemParser).form({
+      params: {
+        title: title,
+        body: body,
+        image_url: 'https://wallofhands.com.au/Images/Home/DonateIcon.png'
+      }
+    });
+
+    function feedItemParser(e, r, b){
+      console.log(b);
+    }
+  }
+
+
+
   newTransactions.push(String(req.body));
   res.send(200);
 });
@@ -97,44 +130,7 @@ function getAccounts(){
   request.get(baseURL + '/accounts', settings, parser);
 }
 
-function getTransactions(){
-  request.get(baseURL + '/transactions?account_id=' + accountId, settings, storeTransactions);
 
-  function storeTransactions(err, res, body){
-    if(!err){
-      module.exports.data.transactions = JSON.parse(body).transactions;
-
-      for(var charity in charities){
-        if(charities.hasOwnProperty(charity)){
-          module.exports.data.transactions.forEach(function(transaction){
-            if(transaction.merchant === charities[charity].merchantId){
-              addFeedItem(transaction);
-            }
-          })
-        }
-      }
-    }else{
-      console.log(err);
-    }
-  }
-}
-
-function addFeedItem(transaction){
-  var title = "Info about your donation to " + transaction.description;
-  var body = "Your donation of " + Math.abs(transaction.amount / 100) + " allows " + transaction.description + " to buy 5 mosquito nets";
-
-  request.post(baseURL + '/feed?account_id=' + accountId + '&type=basic&params[title]=' + title + '&params[body]=' + body, settings, feedItemParser).form({
-    params: {
-      title: title,
-      body: body,
-      image_url: 'https://wallofhands.com.au/Images/Home/DonateIcon.png'
-    }
-  });
-
-  function feedItemParser(e, r, b){
-    console.log(b);
-  }
-}
 
 function parser(error, res, body){}
 
