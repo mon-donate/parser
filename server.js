@@ -46,7 +46,7 @@ app.post('/new_transaction', function(req, res){
 });
 
 app.get('/transactions', function(req, res){
-  res.send(String(newTrasnactions))
+  res.send(String(newTransactions))
 });
 
 
