@@ -1,3 +1,6 @@
+Mon-Donate
+===
+
 This little node.js script listens calls to an endpoint via a webhook from mondo.
 
 The script parsers the transaction and checks if we have an impact statement relating to that donation.
