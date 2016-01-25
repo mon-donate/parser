@@ -9,7 +9,7 @@ app.use(bodyParser.json())
 var charities = [
   {
     "name": "Against Malaria Foundation",
-    "mondoDescription": "AGAINST MALARIA FO".replace(/['"]+/g, '').toLowerCase(),
+    "mondoDescription": "Against Malaria Foundation".replace(/['"]+/g, '').toLowerCase(),
     "merchantId": "merch_000094S7XUBOwkTnV5P1RB",
     "info": "Since its founding in 2004, the Against Malaria Foundation has distributed over 5.7 million insecticide nets around the world. These nets provide effective and long lasting protection against malaria, a debilitating and life threatening disease, enabling people to live happier, healthier and more productive lives",
     "multiple": 1.77,
@@ -17,7 +17,7 @@ var charities = [
   },
   {
     "name": "War Child",
-    "mondoDescription": "WWW.WARCHILD.ORG.UK".replace(/['"]+/g, '').toLowerCase(),
+    "mondoDescription": "WarChild".replace(/['"]+/g, '').toLowerCase(),
     "merchantId": "merch_000094U3dsVDQdMJ6cxK8v",
     "info": "War Child support children in some of the world's most conflict ridden areas.  Since 1993, they’ve helped millions of children affected by conflict, providing everything from school uniforms to anti-malarial treatments, and working to uphold children’s rights: the right to an education, the right to live free from violence, and ultimately, the right to a childhood.  ",
     "multiple": 3,
@@ -25,7 +25,7 @@ var charities = [
   },
   {
     "name": "Schistosomiasis Control Initiative",
-    "mondoDescription": "SHORT COURSES".replace(/['"]+/g, '').toLowerCase(),
+    "mondoDescription": "Schistosomiasis Control Initiative".replace(/['"]+/g, '').toLowerCase(),
     "merchantId": "merch_000094U2y5ktlSKRUt5DV3",
     "info": "The Schistosomiasis Control Initiative supports the governments of African nations treat schistosomiasis, a neglected tropic disease caused by parasitic worms. Since its founding, SCI have delivered over 100 million treatments, allowing people to eliminate the parasite, and live happier, healthier and more productive lives.",
     "multiple": 0.37,
