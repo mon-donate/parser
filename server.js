@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var app = express();
 app.use(bodyParser.json())
 
+// should be require('../charities') from a json file people can contribute to but didn't have time
 var charities = [
   {
     "name": "Against Malaria Foundation",
@@ -35,7 +36,9 @@ var charities = [
   }
 ];
 
-var accessToken, accountId, baseURL, settings, newTransactions;
+var accessToken = 'INSERT-ACCESS-TOKEN-HERE',
+  accountId = 'INSERT-ACCOUNT-ID-HERE',
+  baseURL, settings, newTransactions;
 
 
 app.set('port', (process.env.PORT || 3000));
@@ -44,15 +47,9 @@ app.listen(app.get('port'), '0.0.0.0', function () {
   console.log('Example app listening on port' + app.get('port'));
 });
 
-app.get('/', function (req, res) {
-  res.send('Hello World!');
-});
-
-newTransactions = [];
-
 // webhook stuff
 app.post('/new_transaction', function(req, res){
-  accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaSI6Im9hdXRoY2xpZW50XzAwMDA5NFB2SU5ER3pUM2s2dHo4anAiLCJleHAiOjE0NTM4OTkxMTMsImlhdCI6MTQ1MzYzOTkxMywianRpIjoidG9rXzAwMDA5NFR4STRGMlZGT2R4TFpDVHAiLCJ1aSI6InVzZXJfMDAwMDk0Um82eVl6ekIwbVhDbzNyRiIsInYiOiIxIn0.XOdbfp4iWon8TbKPkCV-dyVP5Nf0GhdJAF7Kvvt5g0M',
+  accessToken = 'INSERT-ACCESS-TOKEN-HERE',
   accountId = 'acc_000094Ro6z7NvKW8FqtWSH';
   baseURL = 'https://staging-api.getmondo.co.uk';
   settings = {
@@ -61,7 +58,6 @@ app.post('/new_transaction', function(req, res){
     }
   };
 
-  newTransactions.push(JSON.stringify(transaction));
   console.log('new transaction recognised');
   var transaction = req.body.data;
   var merchant = transaction.merchant.id;
@@ -89,21 +85,10 @@ app.post('/new_transaction', function(req, res){
       }
     });
 
-    function feedItemParser(e, r, b){
-      console.log('feed res');
-      console.log(e);
-      console.log(b);
-    }
+    function feedItemParser(e, r, b){}
   }
 
-
-
-  newTransactions.push(String(req.body));
   res.send(200);
-});
-
-app.get('/transactions', function(req, res){
-  res.send(String(newTransactions))
 });
 
 function listWebhooks(){
